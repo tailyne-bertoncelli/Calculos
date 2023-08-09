@@ -11,7 +11,6 @@ public class NumeroService {
 
     public void calcula(DadosNumeros dadosNumeros){
         Assert.isTrue(dadosNumeros.numero().length >= 20, "Você deve fornecer pelo menos 20 numeros!");
-        Assert.isTrue(dadosNumeros.numero() == null, "Você deve fornecer pelo menos 20 números!");
 
         //QUANTIDADE DE DADOS
         for (int i = 0; i < dadosNumeros.numero().length; i++) {
@@ -52,7 +51,8 @@ public class NumeroService {
             quadrado += diferenca * diferenca;
         }
 
-        double desvio = quadrado / dadosNumeros.numero().length;
+        double variancia = quadrado / dadosNumeros.numero().length;
+        double desvio = Math.sqrt(variancia);
         System.out.println("O desvio dos valores é: "+ desvio);
     }
 }
