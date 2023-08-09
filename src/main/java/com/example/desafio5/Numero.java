@@ -9,5 +9,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Numero {
     @Getter @Setter
-    private int numero [];
+    private double numero [];
 }

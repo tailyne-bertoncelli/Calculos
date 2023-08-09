@@ -1,6 +1,7 @@
 package com.example.desafio5;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -9,6 +10,9 @@ import java.util.Arrays;
 public class NumeroService {
 
     public void calcula(DadosNumeros dadosNumeros){
+        Assert.isTrue(dadosNumeros.numero().length >= 20, "Você deve fornecer pelo menos 20 numeros!");
+        Assert.isTrue(dadosNumeros.numero() == null, "Você deve fornecer pelo menos 20 números!");
+
         //QUANTIDADE DE DADOS
         for (int i = 0; i < dadosNumeros.numero().length; i++) {
             System.out.println(dadosNumeros.numero()[i]);
@@ -24,7 +28,7 @@ public class NumeroService {
         System.out.println("Média dos valores: " + media);
 
         //CALCULA MEDIANA
-        int[] crescente = dadosNumeros.numero();
+        double[] crescente = dadosNumeros.numero();
         Arrays.sort(crescente);
 
         double mediana;
@@ -43,8 +47,8 @@ public class NumeroService {
 
         //CALCULA DESVIO PADRÃO
         double quadrado = 0.0;
-        for (int a: dadosNumeros.numero()) {
-            int diferenca = a - media;
+        for (double a: dadosNumeros.numero()) {
+            double diferenca = a - media;
             quadrado += diferenca * diferenca;
         }
 
