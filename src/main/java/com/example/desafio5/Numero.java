@@ -10,4 +10,16 @@ import lombok.Setter;
 public class Numero {
     @Getter @Setter
     private double numero [];
+
+    @Getter @Setter
+    private double qntNumeros;
+
+    @Getter @Setter
+    private double media;
+
+    @Getter @Setter
+    private double mediana;
+
+    @Getter @Setter
+    private double desvioPadrao;
 }

@@ -3,30 +3,39 @@ package com.example.desafio5;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 @Service
 public class NumeroService {
 
-    public void calcula(DadosNumeros dadosNumeros){
+    public Numero calcula(DadosNumeros dadosNumeros){
+        Numero numero = new Numero();
+        numero.setNumero(dadosNumeros.numero());
         Assert.isTrue(dadosNumeros.numero().length >= 20, "Você deve fornecer pelo menos 20 numeros!");
 
-        //QUANTIDADE DE DADOS
-        for (int i = 0; i < dadosNumeros.numero().length; i++) {
-            System.out.println(dadosNumeros.numero()[i]);
-        }
-        System.out.println("Recebi " + dadosNumeros.numero().length + " números!");
+        numero.setQntNumeros( calculaQntNumeros(dadosNumeros));
+        numero.setMedia(calculaMedia(dadosNumeros));
+        numero.setMediana(calculaMediana(dadosNumeros));
+        numero.setDesvioPadrao(calculaDesvio(dadosNumeros));
 
-        //CALCULA MÉDIA
-        int soma = 0;
-        for (int x = 0; x < dadosNumeros.numero().length; x++) {
-             soma += dadosNumeros.numero()[x];
-        }
-        int media = soma / dadosNumeros.numero().length;
-        System.out.println("Média dos valores: " + media);
+        return numero;
+    }
 
-        //CALCULA MEDIANA
+    private double calculaDesvio(DadosNumeros dadosNumeros) {
+        double media = calculaMedia(dadosNumeros);
+        double quadrado = 0.0;
+        for (double a: dadosNumeros.numero()) {
+            double diferenca = a - media;
+            quadrado += diferenca * diferenca;
+        }
+
+        double variancia = quadrado / dadosNumeros.numero().length;
+        double desvio = Math.sqrt(variancia);
+
+        return desvio;
+    }
+
+    private double calculaMediana(DadosNumeros dadosNumeros) {
         double[] crescente = dadosNumeros.numero();
         Arrays.sort(crescente);
 
@@ -41,18 +50,24 @@ public class NumeroService {
             int impar = tamanho / 2;
             mediana = crescente[impar];
         }
-
-        System.out.println("A mediana dos numeros é: " + mediana);
-
-        //CALCULA DESVIO PADRÃO
-        double quadrado = 0.0;
-        for (double a: dadosNumeros.numero()) {
-            double diferenca = a - media;
-            quadrado += diferenca * diferenca;
-        }
-
-        double variancia = quadrado / dadosNumeros.numero().length;
-        double desvio = Math.sqrt(variancia);
-        System.out.println("O desvio dos valores é: "+ desvio);
+        return mediana;
     }
+
+    private double calculaMedia(DadosNumeros dadosNumeros) {
+        double soma = 0;
+        for (int x = 0; x < dadosNumeros.numero().length; x++) {
+            soma = soma + dadosNumeros.numero()[x];
+        }
+        double media = soma / dadosNumeros.numero().length;
+
+        return media;
+    }
+
+    private double calculaQntNumeros(DadosNumeros dadosNumeros) {
+//        for (int i = 0; i < dadosNumeros.numero().length; i++) {
+//            System.out.println(dadosNumeros.numero()[i]);
+//        }
+        return dadosNumeros.numero().length;
+    }
+
 }

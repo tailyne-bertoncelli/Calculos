@@ -15,9 +15,9 @@ public class NumeroController {
     private NumeroService numeroService;
 
     @PostMapping
-    public void envia(@RequestBody DadosNumeros dadosNumeros) throws Exception {
+    public ResponseEntity<?> envia(@RequestBody DadosNumeros dadosNumeros) throws Exception {
         try {
-            this.numeroService.calcula(dadosNumeros);
+            return ResponseEntity.ok(this.numeroService.calcula(dadosNumeros));
         } catch (Error e){
             throw new Exception(e.getMessage());
         }
