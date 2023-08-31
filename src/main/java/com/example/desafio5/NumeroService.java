@@ -54,10 +54,7 @@ public class NumeroService {
     }
 
     public double calculaMedia(DadosNumeros dadosNumeros) {
-        double soma = 0;
-        for (int x = 0; x < dadosNumeros.numero().length; x++) {
-            soma = soma + dadosNumeros.numero()[x];
-        }
+        double soma = somaNumeros(dadosNumeros);
         double media = soma / dadosNumeros.numero().length;
 
         return media;
@@ -65,6 +62,24 @@ public class NumeroService {
 
     public double calculaQntNumeros(DadosNumeros dadosNumeros) {
         return dadosNumeros.numero().length;
+    }
+
+    public double somaNumeros(DadosNumeros dadosNumeros){
+        double soma = 0;
+        for (int x = 0; x < dadosNumeros.numero().length; x++) {
+            soma = soma + dadosNumeros.numero()[x];
+        }
+        return soma;
+    }
+
+    public double menorValor(DadosNumeros dadosNumeros){
+        double valor = Arrays.stream(dadosNumeros.numero()).min().orElseThrow(()-> new RuntimeException("Array vazio!"));
+        return valor;
+    }
+
+    public double maiorValor(DadosNumeros dadosNumeros){
+        double valor = Arrays.stream(dadosNumeros.numero()).max().orElseThrow(()-> new RuntimeException("Array vazio!"));
+        return valor;
     }
 
 }
