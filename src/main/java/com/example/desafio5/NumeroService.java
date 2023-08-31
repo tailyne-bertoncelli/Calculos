@@ -21,7 +21,7 @@ public class NumeroService {
         return numero;
     }
 
-    private double calculaDesvio(DadosNumeros dadosNumeros) {
+    public double calculaDesvio(DadosNumeros dadosNumeros) {
         double media = calculaMedia(dadosNumeros);
         double quadrado = 0.0;
         for (double a: dadosNumeros.numero()) {
@@ -35,7 +35,7 @@ public class NumeroService {
         return desvio;
     }
 
-    private double calculaMediana(DadosNumeros dadosNumeros) {
+    public double calculaMediana(DadosNumeros dadosNumeros) {
         double[] crescente = dadosNumeros.numero();
         Arrays.sort(crescente);
 
@@ -53,7 +53,7 @@ public class NumeroService {
         return mediana;
     }
 
-    private double calculaMedia(DadosNumeros dadosNumeros) {
+    public double calculaMedia(DadosNumeros dadosNumeros) {
         double soma = 0;
         for (int x = 0; x < dadosNumeros.numero().length; x++) {
             soma = soma + dadosNumeros.numero()[x];
@@ -63,10 +63,7 @@ public class NumeroService {
         return media;
     }
 
-    private double calculaQntNumeros(DadosNumeros dadosNumeros) {
-//        for (int i = 0; i < dadosNumeros.numero().length; i++) {
-//            System.out.println(dadosNumeros.numero()[i]);
-//        }
+    public double calculaQntNumeros(DadosNumeros dadosNumeros) {
         return dadosNumeros.numero().length;
     }
 

@@ -22,4 +22,8 @@ public class Numero {
 
     @Getter @Setter
     private double desvioPadrao;
+
+    public Numero(double[] numeros) {
+        this.numero = numeros;
+    }
 }
